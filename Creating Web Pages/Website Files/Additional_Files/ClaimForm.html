@@ -1,0 +1,51 @@
+<div id="SubmitQ" class="Q">
+<h2>Lost your Luggage?</h2>
+<p>Please fill in the form below.</p>
+<div style="margin:auto;width:400px;">
+<form autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:auto;">
+	<fieldset  name="SubmissionQuery" style="text-align:center;">
+		<legend>Query Submission</legend>
+		<table style="margin:auto;">
+			<tr>
+				<td class="t" style="width:170px">* <input type="text" id="fName" placeholder="First Name" required/></td>
+				<td class="t">* <input type="text" id="sName" placeholder="Surname" required/></td>
+			</tr>
+			<tr>
+				<td class="t">* <input type="email" id="eMail" placeholder="Email"required/></td>
+				<td class="t">* <input pattern="[0-9]{10}" type="tel" id="tNum" placeholder="Telephone Number"required/></td>
+			</tr>
+			<tr>
+				<td class="t">* Contents Value:</td>
+				<td class="t"><select style="width:155px" name="options">
+					<option value="R1000 - R1999">R1000 - R1999</option>
+					<option value="R2000 - R3999">R2000 - R3999</option>
+					<option value="R4000 - R7999">R4000 - R7999</option>
+					<option value="R8000 or Greater">R8000 or Greater</option>
+					</select>
+				</td class="t">
+			</tr>
+			<tr>
+				<td colspan="2">* Luggage/Baggage Description:</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding-left:10px;"><textarea class="t" style="width:346px;height:150px;resize:none;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="ReqText"><i>Fields identified with a ' </span>*<span class="ReqText"> ' are required to be filled in.</i></span></td>
+			</tr>
+		</table>
+	</fieldset>
+	<table style="margin:auto;">
+		<tr>
+			<td class="b">
+			<input type="submit" id="send" onclick="FormMess();" formtarget="_self" style="outline:none; border:1px solid #dbdbdb;border-radius:3px;background-color:#FFFFFF;height:25px;" onmouseout="this.style.backgroundColor='#FFFFFF';" onmouseover="this.style.backgroundColor='#dbdbdb';"/>
+			</td>
+			<td class="b"><input type="reset" style="outline:none; border:1px solid #dbdbdb;border-radius:3px;background-color:#FFFFFF;height:25px;" onmouseout="this.style.backgroundColor='#FFFFFF';" onmouseover="this.style.backgroundColor='#dbdbdb';"/></td>
+		</tr>
+	</table>
+</form>
+	<p style="border-bottom:none; color:#A5A5A5;">
+		If you wish to return to the previous page, then please click <a href="Support.html">here</a>
+	</p>
+</div>
+</div>

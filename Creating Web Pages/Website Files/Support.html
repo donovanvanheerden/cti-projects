@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="SHORTCUT ICON" href="resources\icons\AMA-Zing Airways.png">
+		<link rel="stylesheet" href="resources/stylesheets/shift.css">
+		<link rel="Stylesheet" href="resources/stylesheets/PageLayout.css">
+		<link rel="Stylesheet" href="resources/stylesheets/main.css">
+		<script language="Javascript" src="Additional_Files/FormScript.js"></script>
+		<script language="Javascript" src="Additional_Files/FormMess.js"></script>
+		<title>AMA-Zing Airways</title>
+		<style>
+			#headQuest{
+				text-transform:uppercase;
+			}
+		</style>
+		<script>
+			function initiate(){
+				content = document.getElementById('Supp_Info');
+				var cForm = document.getElementById('ClaimForm');
+				cForm.addEventListener('click', readClaimForm, false);
+			}
+			function readClaimForm(){
+				var url = "Additional_Files/ClaimForm.html";
+				var request = new XMLHttpRequest();
+				request.addEventListener('load', showContent, false);
+				request.open("GET", url, true);
+				request.send();
+			}
+
+			//function showContent() to add data into your
+			function showContent(e){
+				//add data to secContent
+				content.innerHTML = e.target.responseText;
+			}
+			//use the listener to load your initiate() function
+			window.addEventListener('load', initiate, false);
+		</script>
+	</head>
+	<body>
+		<div class="nav">
+		  <div class="container">
+			<ul class="pull-left">
+			  <li><a href="Home.html">AMA-Zing Airways</a></li>
+			</ul>
+			<div class="menu-items">
+			<ul>
+			  <li class="col-md-1"><a href="Support.html">Help</a></li>
+			  <li class="col-md-1"><a href="Bookings.html">Bookings</a></li>
+			  <li class="col-md-1"><a href="About_Us.html">About</a></li>
+			  <li class="col-md-1"><a href="Home.html">Home</a></li>
+			</ul>
+			</div>
+		  </div>
+		</div>
+		<div class="SuppAd">
+			<div = class="container">
+				<h1>Customer Support</h1>
+			</div>
+		</div>
+		<div class="SupportFAQ">
+			<div class="container">
+				<div class="Supp_Info" id="Supp_Info">
+					<h2>How can we help you?</h2>
+					<p>We are sorry when your journey with us doesn't go as smoothly as you would like.
+						When it happens we want you to be able find the information you need quickly and
+						easily, so this page gives you details to help you find out what you can do yourself
+						online and how to contact us.<br/><br/>
+					</p>
+					<table >
+						<tr>
+							<td>
+								<img class="DescImg" src="resources/pictures/DelFlight.jpg"/>
+							</td>
+							<td>
+								<h2 id="Delayed">What if your flight is delayed or cancelled?</h2>
+								<div class="Supp_Info-T">
+								<p>
+									If your flight has been cancelled, or you have experienced
+									a significant delay, we will help you re-arrange your travel plans accordingly.
+								</p>
+								<h2>Rebooking Options:</h2>
+									<p>If you are booked to travel on a flight that is cancelled, you can either:
+									<ol>
+									<li>
+									Rebook onto another AMA-Zing Airways flight at a later date at no extra charge and subject to availability.
+									</li>
+									<li>
+									Cancel your booking and claim a refund to the original form of payment.</p>
+									</li>
+									</ol></br>
+								<p>If your booking also includes any other AMA-Zing Airways flights that are not cancelled
+									you will be able to change these flights at the same time.
+								</p></br>
+								
+									<p>If your booking includes a hotel, a vehicle, a transfer or an experience booked
+									in conjunction with a cancelled flight, you can either:</p>
+								<ul>	
+									<li>Rebook to travel, on a like for like basis, within a 14 day period after the
+											scheduled departure time of the original flight at no extra charge and subject to availability.</li>
+									<li>Rebook to travel, 15 days or more after the scheduled departure time of the
+											original flight. Rebookings are subject to availability and no amendment fee will
+											be charged. Any difference in the price of your hotel, vehicle, transfer or experience
+											will need to be paid by you or will be refunded to you.</li>
+									<li>Cancel your booking and claim a refund to the original form of payment.</li>
+								</ul>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img class="DescImg" src="resources/pictures/LostLugg.jpg"/>
+							</td>
+							<td>
+								<h2 id="Luggage">What to do if your baggage is delayed or missing?</h2>
+								<div class="Supp_Info-T">
+								<p>
+									If we misplace or lose your baggage, <strong>we will make every
+									effort to return it to you as soon as possible.</strong>
+								</p>
+								<h2>Finding delayed and lost baggage</h2>
+								<p>	The sooner you report a problem to us, the quicker we can resolve it.
+									<strong>That's why if your bags have not arrived on time, it's really important that you tell us about it.</strong>
+									</br></br>
+									If you reported a problem with your <strong>baggage</strong> at the airport and have a <strong>baggage
+									file reference number</strong> you do not need to take any further action.</br> <span style="color:#898989">(A baggage
+									file reference number is a series of five letters and five numbers such as 
+									<strong>FGKZA92648</strong> and is different to the baggage receipt you were given when checking your bags in.)</span></br></br>
+									</br>
+									If you left the airport without reporting your problem and do not have a baggage file reference 
+									number please take the following steps:</br></p>
+									<ul>
+									<li>Tell us about your delayed baggage.<strong>(describe it. ie. colour, size, distinct markings?, etc...)</strong>.</li>
+									<li>If you were travelling to the <strong>Intergalactic Islands</strong> from outside of the <strong>Nova-Roost Continent</strong>, call the AMA-Zing Airways
+									Baggage Support Line on <strong>055-02941-9183-285</strong>.</li>
+									</ul>
+									<p><strong>
+									As soon as we find your bag we will return it to you for free to any address you choose.</strong> (This service
+									is not available in some countries due to local government restrictions but we will advise you if this applies.)
+								</p>
+								<h2>Claiming for lost baggage, damaged baggage and damaged and missing contents</h2>
+								
+									<p>Before making a claim, <strong>please ensure you have told us about your damage or loss and have
+									a reference number (e.g. the baggage file reference number from a delayed bag report):</strong>
+									</br></br>
+									<a id="SubmitR" href="#">If you haven't already done so, report your problem now</a>
+									</br></br>
+									If you believe you have lost contents or had contents damaged during a baggage inspection
+									you can claim compensation directly from the AMA-Zing Transport Security Administration (ATSA):
+									</br></br>
+									<a id="ClaimForm" href="#">ATSA claim form</a>
+									</br></br>
+									A personal travel insurance policy will likely provide a greater level of cover than we can
+									offer. We therefore recommend that you contact your insurer before making a claim directly 
+									with us. We will provide you with a written report, on request, to send to your insurer as 
+									proof of loss, damage or delay to your baggage, in support of your claim.
+									</br></br>
+									If you do not have travel insurance that covers you for any relevant loss, you may claim from
+									us for the following reasons within the set deadlines:
+									</p>
+									<div class="Baggage_Claims" style="padding-top: 5px">
+									<table>
+										<tr class="row1">
+											<td>Reason for claim</td>
+											<td>Deadline for claim</td>
+										</tr>
+										<tr class="row2">
+											<td>Baggage reported as missing for more than three days</td>
+											<td>21 days from the date of the flight</td>
+										</tr>
+										<tr class="row3">
+											<td>Expenses incurred because of a delay to a bag</td>
+											<td> 21 days from the date of the flight</td>
+										</tr>
+										<tr class="row4">
+											<td>Damage to a bag</td>
+											<td>7 days from the date of the flight</td>
+										</tr>
+										<tr class="row5">
+											<td>Missing or damaged baggage contents</td>
+											<td>7 days from the date of the flight</td>
+										</tr>
+									</table>
+									
+									</div>
+								</div>
+								</br>
+							</td>
+						</tr>
+					</table>
+					<div class="SubQ" style="border-top:1px solid #dbdbdb;">
+						<br/><br/>
+						<div id="SubQ" class="SubQuest" style="height:auto">
+							<table style="margin:auto;">
+								<tr>
+									<td><h1 id="headQuest">Submit a Question?</h1></td>
+									<td><input id="SubmitQ" onmouseover="this.style.backgroundColor='#dbdbdb';" onmouseout="this.style.backgroundColor='#FFFFFF';" style="width:200px;height:200px;outline:none;border:1px solid #dbdbdb;padding:10px; -webkit-border-radius:200px;background-color:#FFFFFF;width:200px;font-size:90pt;" value="?" type="button"/></td>
+								</tr>
+							</table>	
+						</div>
+						<br/><br/>
+						<div class="Contact-Us" style="border-top:1px solid #dbdbdb; padding-bottom:0px">
+							<table style="">
+								<tr>
+									<td>
+										<img class="DescImg" src="resources/pictures/Contact_Us_01.jpg"/>
+									</td>
+									<td>
+										<h2 id="Contact-Us">Contact Us</h2>
+										<br/><br/>
+										<div class="Contact-Us-T">
+											<p style="padding-left:10px">
+											<strong>Office Hours: 05:30AM - 11:00PM daily</strong>
+											<table>
+											<tr>
+											<td style="width:195px">AMA-Zing Airways Booking</td><td><span style="padding-right:10px">:</span> +57-771-8728-848</td>
+											</tr>
+											<tr>
+											<td>AMA-Zing Airways Fax</td><td><span style="padding-right:10px">:</span> +57-771-8728-858</td>
+											</tr>
+											<tr>
+											<td>AMA-Zing Missing Baggage</td><td><span style="padding-right:10px">:</span> +57-771-8728-868</td>
+											</tr>
+											<tr>
+											<td>AMA-Zing Flight Helpline</td><td><span style="padding-right:10px">:</span> +57-771-8728-878</td>
+											</tr>
+											<tr>
+											<td>AMA-Zing Support Email</td><td><span style="padding-right:10px">:</span> info@amazingair.com</td>
+											</tr>
+											</table>
+											</p>
+										</div>
+										<br/><br/><br/><br/>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="more-info">
+				<div class="contain">
+					<div class="col-md-4">
+						<h4>Travel Agencies</h4>
+						<ul>
+							<li><a href="http://www.harveyworld.co.za/travel-agents">Harvey World</a><li>
+							<li><a href="http://www.pentravel.co.za/">Pentravel</a><li>
+							<li><a href="http://www.suretravel.co.za/">Sure Travel</a><li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4>Company</h4>
+						<ul>
+							<li><a href="About_Us.html#About">About Us</a></li>
+							<li><a href="Support.html">Support</a></li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4>Customer Support</h4>
+						<ul>
+							<li><a href="Support.html#Delayed">Delayed Flight</a></li>
+					<li><a href="Support.html#Luggage">Lost Baggage</a></li>
+					<li><a href="Support.html#SubQ">Submit Question</a></li>
+					<li><a href="Support.html#Contact-Us">Contact Us</a></li>
+						</ul>
+					</div>
+				</div>
+		</div>
+		<footer class="footer">
+			<p>This site was made by Donovan van Heerden Copyright &copy </p>
+		</footer>
+	</body>
+</html>

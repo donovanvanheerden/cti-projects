@@ -1,0 +1,66 @@
+CREATE PROCEDURE sp_Report
+ @classID INT
+ AS
+   DECLARE @classDay VARCHAR(9)
+   DECLARE @classTime VARCHAR(5)
+   DECLARE @classStudio INT
+   DECLARE @numPeople INT
+   DECLARE @memberName VARCHAR(12)
+   DECLARE @memberTel VARCHAR(11)
+   
+       
+  SET NOCOUNT ON
+  IF @classID IN(SELECT classID FROM class)
+   BEGIN
+     SELECT @classDay = class.classDay,
+            @classTime = class.classTime,
+            @classStudio = class.classStudio
+            FROM class
+            WHERE class.classID = @classID
+     PRINT ('YOGA CLASS REPORT:')
+     PRINT ('___________________')
+     PRINT ('')
+     PRINT ('Class code:    '+ CAST(@classID AS VARCHAR))
+     PRINT ('Week day:      '+ @classDay + '     [Time:  '+@classTime+']')  
+     PRINT ('Studio Number: '+ CAST(@classStudio AS VARCHAR))       
+     PRINT ('')
+     PRINT ('No.  Member name                     Contact number')
+     PRINT ('________________________________________________________')
+     PRINT ('')
+     
+     SELECT member.memberName, member.memberTel 
+       INTO #tempTable
+       FROM member
+            JOIN class_member
+            ON member.memberID = class_member.memberID
+            WHERE class_member.classID = @classID
+           
+             ALTER TABLE #tempTable
+               ADD
+               Printed SMALLINT
+  
+            UPDATE #tempTable
+              SET Printed = 0  
+     
+    SELECT @numPeople = 1
+      WHILE EXISTS (SELECT * 
+            FROM #tempTable 
+            WHERE Printed = 0)
+   BEGIN
+      SELECT @memberName = #tempTable.memberName,
+             @memberTel = #tempTable.memberTel
+             FROM #tempTable
+               WHERE #tempTable.Printed = 0
+        
+      PRINT (CAST(@numPeople AS VARCHAR) + '.' + REPLICATE(' ',4 - LEN(CAST(@numPeople AS VARCHAR))) + @memberName + REPLICATE(' ',32 - LEN(@membername)) + @memberTel) 
+		
+      UPDATE #tempTable
+        SET Printed = 1
+         WHERE #tempTable.memberName = @memberName
+     
+      SELECT @numPeople = @numPeople + 1
+      END  
+   END
+   ELSE 
+   RAISERROR ('classID does not exist!', 16, 100) 
+GO

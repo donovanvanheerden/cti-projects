@@ -1,0 +1,92 @@
+<div id="SubmitQ" class="BookForm" style="background-color:#f7f7f7;padding-top:0px;" >
+<header>
+<h2>Book a Flight</h2>
+<nav>
+<p>Please fill in the form below.</p>
+</nav>
+</header>
+<div style="margin:auto;width:400px;">
+<section>
+<form autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:auto;">
+	<fieldset  name="SubmissionQuery" style="text-align:center;">
+		<legend>Booking Submission</legend>
+		<table  style="margin:auto;">
+			<tr>
+				<td class="t" style="width:175px;">* <input type="text" id="fName" placeholder="First Name" required/></td>
+				<td class="t" style="width:175px;">* <input type="text" id="sName" placeholder="Surname" required/></td>
+			</tr>
+			<tr>
+				<td class="t">* <input type="email" id="eMail" placeholder="Email"required/></td>
+				<td class="t">* <input pattern="[0-9]{10}" type="text" id="tNum" placeholder="Telephone Number"/></td>
+			</tr>
+			<tr>
+				<td class="t">* Country:</td>
+				<td class="t" style="padding-left:15px;">
+					<select id="Countries" style="width:155px" name="countryOption" onchange=CountryClick(value);>
+						<option value="none">[Select a Country]</option>
+						<option value="0">China</option>
+						<option value="1">India</option>
+						<option value="2">England</option>
+						<option value="3">France</option>
+						<option value="4">Brazil</option>
+						<option value="5">Japan</option>
+					</select>
+				</td class="t">
+			</tr>
+		</table >
+		<table id="BookFormT" style="margin:auto;">
+		</table>
+		<div style="padding-bottom:10px;">
+		<table style="margin:auto;"> 
+			<tr>
+				<td class="t" >* No of tickets:</td>
+				<td class="t" style="padding-left:15px;"><input type="number" id="TickNum" default="1" min="1" max="20" value="1" onchange="CalcTickCost();"/></td>
+			</tr>
+		</table>
+		</div>
+		<table id="PriceText" style="margin:auto;padding-top:20px;">
+		</table>
+		<div style="padding-top:10px;padding-bottom:20px;border-bottom:1px solid #dbdbdb;">
+		<table style="margin:auto;border-style:collapse;">
+			<tr>
+				<td style="width:310px;" colspan="2">Would you like to receive future notificaions :</td>
+			</tr>
+			<tr>
+				<td class="t" style="text-align:center;">Via email:</td><td class="t"><input type="checkbox"/></td>
+			</tr>
+			<tr>
+				<td class="t" style="text-align:center;">Via phone:</td><td class="t"><input type="checkbox"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="ReqText"><i>Fields identified with a ' </span>*<span class="ReqText"> ' are required to be filled in.</i></span></td>
+			</tr>
+		</table>
+		<div style="padding-top:10px;">
+		<table style="margin:auto;">
+			<tr>
+				<td><input id="ContBtn" type="button" value="Continue" onclick="CalcExpDate();" style="outline:none; border:1px solid #dbdbdb;border-radius:3px;background-color:#FFFFFF;height:25px;" onmouseout="this.style.backgroundColor='#FFFFFF';" onmouseover="this.style.backgroundColor='#dbdbdb';"/></td>
+			</tr>
+		</table>
+		</div>
+		</div>
+		<div style="padding-top:20px;" id="PaySec">
+		
+		</div>
+	</fieldset>
+	<table style="margin:auto;">
+		<tr>
+			<td class="b">
+			<input onclick="CheckTel();CheckSecCode();" type="Submit" value="Accept" id="Accept" formtarget="_self" style="outline:none; border:1px solid #dbdbdb;border-radius:3px;background-color:#FFFFFF;height:25px;" onmouseout="this.style.backgroundColor='#FFFFFF';" onmouseover="this.style.backgroundColor='#dbdbdb';"/>
+			</td>
+			<td class="b"><input value="Reset" type="reset" style="outline:none; border:1px solid #dbdbdb;border-radius:3px;background-color:#FFFFFF;height:25px;" onmouseout="this.style.backgroundColor='#FFFFFF';" onmouseover="this.style.backgroundColor='#dbdbdb';"/></td>
+		</tr>
+	</table>
+</form>
+</section>
+<aside>
+	<p style="border-bottom:none; color:#A5A5A5;">
+		If you wish to return to the previous page, </br>then please click <a href="Bookings.html">here</a>
+	</p>
+</aside>
+</div>
+</div>

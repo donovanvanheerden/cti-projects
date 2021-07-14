@@ -1,0 +1,65 @@
+--This Section Of Code Creates The sp_Report Procedure
+
+CREATE PROCEDURE sp_Report
+@SuppID INT
+AS
+  DECLARE @FoodID INT
+  DECLARE @SuppName VARCHAR(50)
+  DECLARE @SuppNum VARCHAR(15)
+  DECLARE @SuppEmail VARCHAR(50)
+  DECLARE @FoodType VARCHAR(50)
+  DECLARE @NumFood INT
+  SELECT @SuppName = Supplier.suppName,
+         @SuppNum = Supplier.suppNum,
+         @SuppEmail = Supplier.suppEmail
+           FROM Supplier
+             WHERE Supplier.suppID = @suppID
+  PRINT('EXPIRED PRODUCTS REPORT:')
+  PRINT('')
+  PRINT('Generated:')
+  PRINT(CAST (GETDATE() AS VARCHAR))
+  PRINT('')
+  PRINT('Company ID:      ' + CAST(@SuppID AS VARCHAR))
+  PRINT('Company Name:    ' + @SuppName)
+  PRINT('Company Num:     ' + @SuppNum)
+  PRINT('Company Email:   ' + @SuppEmail)
+  PRINT('')
+  PRINT('Food ID:   Food Type:')
+  PRINT('')
+  
+  SELECT * 
+    INTO #tempExp
+      FROM vw_ExpiredFoodDetails
+        WHERE vw_ExpiredFoodDetails.suppNum = @SuppNum
+
+  ALTER TABLE #tempExp
+    ADD
+      Printed SMALLINT
+  
+  UPDATE #tempExp
+    SET Printed = 0
+    
+  SELECT @NumFood = 0
+  WHILE EXISTS (SELECT * 
+                  FROM #tempExp 
+                    WHERE Printed = 0)
+    BEGIN  
+      SELECT @FoodID = #tempExp.foodID,
+             @FoodType = #tempExp.foodType
+               FROM #tempExp
+                 WHERE #tempExp.Printed = 0
+      PRINT(CAST(@FoodID AS VARCHAR) + REPLICATE(' ',11 - LEN(CAST(@FoodID AS VARCHAR))) + @FoodType)
+      UPDATE #tempExp 
+        SET Printed = 1 
+			WHERE foodID = @FoodID
+      SELECT @NumFood = @NumFood + 1
+    END
+  PRINT('')
+  PRINT('Total Records')
+  PRINT('')
+  PRINT(CAST(@NumFood AS VARCHAR))
+  PRINT('')
+GO
+
+USE master
+GO

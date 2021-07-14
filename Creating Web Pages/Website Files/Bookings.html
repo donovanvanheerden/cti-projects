@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="SHORTCUT ICON" href="resources/icons/AMA-Zing Airways.png">
+		<link rel="stylesheet" href="resources/stylesheets/shift.css">
+		<link rel="Stylesheet" href="resources/stylesheets/PageLayout.css">
+		<link rel="Stylesheet" href="resources/stylesheets/main.css">
+		<title>AMA-Zing Airways</title>
+		<style>
+			#Book_Text{
+				font-size:35px;
+				text-transform:uppercase;
+			}
+		</style>
+		<script language="javascript" src="Additional_Files/BookForm.js"></script>
+		<script>
+			window.addEventListener('load', function(){readCity();readPrice();}, false);
+			
+			function CheckTel(){
+			
+				var tel = document.getElementById('tNum').value;
+				
+				
+				if (tel == ""){
+					
+					document.getElementById('tNum').setCustomValidity('Please enter your 10 digit Tel No.');
+				}else{
+					
+					document.getElementById('tNum').setCustomValidity('');
+				}
+			
+			}
+			
+			function CheckSecCode(){
+			
+				var FirName = document.getElementById('fName').value;
+				
+				
+				if (FirName == ""){
+					
+					document.getElementById('fName').setCustomValidity('Please enter your name');
+				}else{
+					
+					document.getElementById('fName').setCustomValidity('');
+				}
+			
+			}
+
+			function readCity(){
+				//define url variable
+				var url = "Resources/Textfiles/Cities.txt";
+				//create a new XMLHttpRequest object
+				var request = new XMLHttpRequest();
+				//use your listener to load content on your web page from you txt file
+				request.addEventListener('load',declareCities,false);
+				//open your request
+				request.open("GET", url, true);
+				//start you request
+				request.send();
+			}
+			function declareCities(e){
+				Country = new Array;
+				var Country = e.target.responseText.split('#');
+				Cities = new Array;
+				for (var k = 0; k< Country.length; k++){											
+						Cities[k] = Country[k].split('|');
+					}
+			}
+			function readPrice(){
+				//define url variable
+				var url = "Resources/Textfiles/Prices.txt";
+				//create a new XMLHttpRequest object
+				var request = new XMLHttpRequest();
+				//use your listener to load content on your web page from you txt file
+				request.addEventListener('load',declarePrices,false);
+				//open your request
+				request.open("GET", url, true);
+				//start you request
+				request.send();
+			}
+			function declarePrices(e){
+				CountryCost = new Array;
+				var CountryCost = e.target.responseText.split('#');
+				CitiesCost = new Array;
+				for (var k = 0; k< CountryCost.length; k++){											
+						CitiesCost[k] = CountryCost[k].split('|');
+						/*for (var l = 0; l < CitiesCost[k].length; l++)
+							{
+								alert(CitiesCost[k][l]);
+							}*/
+					}
+			}
+			function CountryClick(cities){
+				cty = document.getElementById("Countries").value;
+				if (cities != "none"){
+						nextSelect = "<tr><td class='t'>* City:</td><td class='t' style='padding-left:35px'><select id = City onchange=CityClick(value) style = width:155px><option value = none>[Select a City]</option>";
+						for (var k = 0; k < Cities[cty].length; k++){
+								nextSelect += "<option value = '" + Cities[cty][k] + "'>" + Cities[cty][k] + "</option>";
+							}
+						nextSelect += "</select></td></tr>";
+						document.getElementById("BookFormT").innerHTML = nextSelect;
+						}
+			}
+			
+			function CityClick(city){
+				for(var k = 0; k < Cities[cty].length; k++){
+				
+						if (city === Cities[cty][k]){
+						
+								/*alert("." + city + ". - ." + Cities[cty][k] + ".");*/
+								price = CitiesCost[cty][k]
+								document.getElementById("PriceText").innerHTML = "<tr><td>Total Cost:</td><td>";
+								document.getElementById("PriceText").innerHTML += "R <span id='Price'>" +price+ "</span></td></tr>";
+							
+							}else{
+							
+								/*alert("#########" + city + ". - ." + Cities[cty][k] + ".");*/
+							}
+					}
+			}
+			
+			function CalcExpDate(){ 
+				document.getElementById('ContBtn').style.visibility='hidden';
+				/*alert('before anything');*/
+				var date = new Date();
+				var month = date.getMonth() + 2;
+				var year = date.getFullYear();
+				
+				/*alert('after declare');*/
+				PayTable = "<table style='margin:auto;'><tr><td class='t'>* Card Type:</td><td class='t' style='text-align:center;'><select>";
+				PayTable += "<option>MasterCard</option><option>Visa</option></select></td></tr><tr><td class='t' id='CardNo'>* Card Number:</td>";
+				PayTable += "<td class='t'><input pattern='[0-9]{16}' type='text' id='cNum' style='Width:183px;' placeholder='1234567890987654'required/></td>";
+				PayTable += "</tr><tr><td class='t' id='SecCode'>* Security Code:</td><td class='t'><input pattern='[0-9]{3}' type='text' id='cNum' style='Width:183px;' placeholder='186'required/></td>";
+				PayTable += "</tr><tr><td class='t'>* Expiry Date:</td><td class='t' style='width:250px;' id='Date'></td></tr><tr><td colspan='2'><span class='ReqText'><i>Fields identified with a ' </span>*<span class='ReqText'> ' are required to be filled in.</i></span></td></tr></table>";
+							
+				
+				document.getElementById('PaySec').innerHTML = PayTable;
+				
+				monthOpt = " Month: <select id='ExpMonth'>";
+								
+				for(month; month <= 12; month++){
+				
+					monthOpt += "<option value= '"+month+"'>"+month+"</option>";
+				}
+				
+				/*alert('after month loop');*/
+				
+				monthOpt += "</select>";
+				
+				/*alert(monthOpt);*/
+				
+				yearOpt = "Year: <select id='ExpYear' onchange=ValidateExpMonth(this);>";
+				
+				/*alert(yearOpt);*/
+				
+				var iyear = year +10;
+				
+				for(year; year <= iyear; year++){
+					
+					yearOpt += "<option value='"+year+"'>"+year+"</option>";
+					/*alert(yearOpt);*/
+				}
+				
+				yearOpt += "</select>";
+				fulltxt = yearOpt;
+				fulltxt += monthOpt;
+				
+				/*alert('after year loop');
+				alert(fulltxt);*/
+				
+				document.getElementById('Date').innerHTML = fulltxt;
+				
+				/*alert('after all is done');*/
+			}
+			
+			function ValidateExpMonth(that){
+			
+				if(that.value != "2014"){
+					
+					monthTxt = '';
+					for(var mon = 1; mon <= 12; mon++){
+					
+						monthTxt += "<option value='"+mon+"'>"+mon+"</option>";
+					}
+					
+					document.getElementById('ExpMonth').innerHTML = monthTxt;
+					
+				}else{
+					
+					var date = new Date();
+					var month = date.getMonth() + 2;
+					
+					CurrMonTxt = '';
+					for(month; month <= 12;month++){
+					
+						CurrMonTxt += "<option value='"+month+"'>"+month+"</option>";
+					}
+					
+					document.getElementById('ExpMonth').innerHTML = CurrMonTxt;
+				}
+			}
+			
+			function CalcTickCost(){
+				var ticket = document.getElementById('TickNum').value;
+				var tot = price*ticket;
+				document.getElementById('Price').innerHTML = tot;
+			}
+		</script>
+	</head>
+	<body>
+		<div class="nav">
+		  <div class="container">
+			<ul class="pull-left">
+			  <li><a href="Home.html">AMA-Zing Airways</a></li>
+			</ul>
+			<div class="menu-items">
+			<ul>
+			  <li class="col-md-1"><a href="Support.html">Help</a></li>
+			  <li class="col-md-1"><a href="Bookings.html">Bookings</a></li>
+			  <li class="col-md-1"><a href="About_Us.html">About</a></li>
+			  <li class="col-md-1"><a href="Home.html">Home</a></li>
+			</ul>
+			</div>
+		  </div>
+		</div>
+		<div class="BookingsAdd">
+			<div class="container">
+				<h1>Bookings</h1>
+			</div>
+		</div>
+		<div id="CreateBooking"  class="CreateBooking" style="background-color:#f7f7f7">
+			<div id="MainContainer" class="container" >
+				<div  class="container" style="padding-bottom:10px;">
+						<div  class="T-Info" style="margin:auto;">
+							<h2>Popular Destinations</h2>
+								<ul>
+									<div class="col-md-4">
+										<figure class="fig">
+										<a href="#SubmitQ"><img  id="BC" style="-webkit-border-radius:10px;" src="resources/pictures/Travel-BC.jpg"/></a>
+										<figcaption><i>Beijing - China</i></figcaption>
+										</figure>
+									</div>
+									<div class="col-md-4">	
+										<figure class="fig">
+										<a href="#SubmitQ"><img id="DI" style="-webkit-border-radius:10px;" src="resources/pictures/Travel-DI.jpg"/></a>
+										<figcaption><i>Dubai - India</i></figcaption>
+										</figure>
+									</div>
+									<div class="col-md-4">	
+										<figure class="fig">
+										<a href="#SubmitQ"><img id="LE" style="-webkit-border-radius:10px;" src="resources/pictures/Travel-LE.jpg"/></a>
+										<figcaption><i>London - England</i></figcaption>
+										</figure>
+									</div>
+								</ul>
+								<ul >
+									<div class="col-md-4">
+										<figure class="fig">
+										<a href="#SubmitQ"><img id="PF" style="-webkit-border-radius:10px;" src="resources/pictures/Travel-PF.jpg"/></a>
+										<figcaption><i>Paris - France</i></figcaption>
+										</figure>
+									</div>
+									<div class="col-md-4">	
+										<figure class="fig">
+										<a href="#SubmitQ"><img id="RB" style="-webkit-border-radius:10px;" src="resources/pictures/Travel-RdJB.jpg"/></a>
+										<figcaption><i>Rio de Janeiro - Brazil</i></figcaption>
+										</figure>
+									</div>
+									<div class="col-md-4">	
+										<figure class="fig">
+										<a href="#SubmitQ"><img id="TJ"  style="-webkit-border-radius:10px;" src="resources/pictures/Travel-TJ.jpg"/></a>
+										<figcaption><i>Tokyo - Japan</i></figcaption>
+										</figure>
+									</div>
+								</ul>
+						</div>
+				
+				</div>
+				<div class="Booking_Btn" style="border-top:1px solid #dbdbdb;padding:10px">
+					<table style="margin:auto;">
+						<tr>
+							<td style="width:400px;" class="t" id="Book_Text">Create a Booking</td>
+							<td><div onmouseover="this.style.backgroundColor='#dbdbdb';" onmouseout="this.style.backgroundColor='#FFFFFF';" style="height:200px;width:200px;-webkit-border-radius:100px;background-color:#FFFFFF;border:1px solid #dbdbdb"><a href="#SubmitQ"><img id="Book" src="resources\icons\Booking Icon200x200.png"></a></div></td>
+						</tr>
+					</table>	
+				</div>				
+				<div class="mainhead" style="border-top: 1px solid #dbdbdb">
+					<h2 id="DepartTable">Departure Times</h2>
+					<table class="DepartTable" style="text-align:center;">
+						<tr class="row1">
+							<td>Flight No :</td>
+							<td>Departure Time :</td>
+							<td>Flying To :</td>
+							<td>Flight Details :</td>
+						</tr>
+						<tr class="row2">
+							<td>FL3157</td>
+							<td>14:30</td>
+							<td>London-England</td>
+							<td>Cancelled</td>
+						</tr>
+						<tr class="row2">
+							<td>FL2775</td>
+							<td>09:30</td>
+							<td>Tokyo-Japan</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL3993</td>
+							<td>11:15</td>
+							<td>Xian-China</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL2561</td>
+							<td>10:30</td>
+							<td>Lourdes-France</td>
+							<td>Cancelled</td>
+						</tr>
+						<tr class="row2">
+							<td>FL9236</td>
+							<td>15:30</td>
+							<td>Salvador-Brazil</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL0284</td>
+							<td>07:45</td>
+							<td>Kyoto-Japan</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL5216</td>
+							<td>16:30</td>
+							<td>Bombay-India</td>
+							<td>Cancelled</td>
+						</tr>
+						<tr class="row2">
+							<td>FL9278</td>
+							<td>10:30</td>
+							<td>Suzhou-China</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL8625</td>
+							<td>13:15</td>
+							<td>Sao Paulo-Brazil</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL5903</td>
+							<td>19:30</td>
+							<td>Nice-France</td>
+							<td>On Time</td>
+						</tr>
+						
+					</table>
+				</div>
+				<div class="mainhead" style="border-top: 1px solid #dbdbdb">
+					<h2 id="ArriveTable">Arrival Times</h2>
+					<table class="ArriveTable" style="text-align:center;">
+						<tr class="row1">
+							<td>Flight No :</td>
+							<td>Arrival Time :</td>
+							<td>Flight From :</td>
+							<td>Flight Details :</td>
+						</tr>
+						<tr class="row2">
+							<td>FL2115</td>
+							<td>15:30</td>
+							<td>Tokyo-Japan</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL3157</td>
+							<td>14:30</td>
+							<td>London-England</td>
+							<td>Early</td>
+						</tr>
+						<tr class="row2">
+							<td>FL6121</td>
+							<td>13:30</td>
+							<td>Dubai-India</td>
+							<td>Delayed</td>
+						</tr>
+						<tr class="row2">
+							<td>FL6521</td>
+							<td>14:30</td>
+							<td>Paris-France</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL9925</td>
+							<td>11:30</td>
+							<td>Shenzhen-China</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL2293</td>
+							<td>12:45</td>
+							<td>Agra-India</td>
+							<td>Delayed</td>
+						</tr>
+						<tr class="row2">
+							<td>FL4127</td>
+							<td>12:30</td>
+							<td>Rio de Janeiro-Brazil</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL9204</td>
+							<td>08:30</td>
+							<td>Bordeaux-France</td>
+							<td>On Time</td>
+						</tr>
+						<tr class="row2">
+							<td>FL6396</td>
+							<td>17:30</td>
+							<td>Beijing-China</td>
+							<td>Cancelled</td>
+						</tr>
+						<tr class="row2">
+							<td>FL7242</td>
+							<td>12:30</td>
+							<td>Mastomoto-Japan</td>
+							<td>On Time</td>
+						</tr>
+						
+					</table>
+				</div>
+				<div class="mainhead" style="border-top: 1px solid #dbdbdb">
+					<h2 id="TransTable">Transfers Times</h2>
+					<table class="TransTable" style="text-align:center;">
+						<tr class="row1">
+							<td>International To Domestic :</td>
+							<td>International Flight No :</td>
+							<td>Arrival Time :</td>
+							<td>Domestic Flight No :</td>
+							<td>Domestic Departure Time :</td>
+						</tr>
+						<tr class="row2">
+							<td>Tokyo-Japan to<br/> Durban-South Africa</td>
+							<td>FL2115</td>
+							<td>15:30</td>
+							<td>D33L2</td>
+							<td>17:30</td>
+						</tr>
+						<tr class="row2">
+							<td>London-England to<br/> Cape Town-South Africa</td>
+							<td>FL3157</td>
+							<td>14:30</td>
+							<td>D35L1</td>
+							<td>16:30</td>
+						</tr>
+						<tr class="row2">
+							<td>Dubai-India to<br/> Port Elizabeth-South Africa</td>
+							<td>FL6121</td>
+							<td>13:30</td>
+							<td>D39L6</td>
+							<td>15:30</td>
+						</tr>
+						<tr class="row2">
+							<td>Paris-France to<br/> Cape Town-South Africa</td>
+							<td>FL6521</td>
+							<td>14:30</td>
+							<td>D35L1</td>
+							<td>16:30</td>
+						</tr>
+						<tr class="row2">
+							<td>Shenzhen-China to<br/> Durban-South Africa</td>
+							<td>FL9925</td>
+							<td>11:30</td>
+							<td>D33L2</td>
+							<td>17:30</td>
+						</tr>
+						<tr class="row2">
+							<td>Agra-India to<br/> Bloemfontein-South Africa</td>
+							<td>FL2293</td>
+							<td>12:45</td>
+							<td>D81L5</td>
+							<td>18:30</td>
+						</tr>
+						<tr class="row2">
+							<td>Rio de Janeiro-Brazil to<br/> Durban-South Africa</td>
+							<td>FL4127</td>
+							<td>12:30</td>
+							<td>D33L2</td>
+							<td>17:30</td>
+						</tr>
+						<tr class="row2">
+							<td>Bordeaux-France to<br/> Cape Town-South Africa</td>
+							<td>FL9204</td>
+							<td>08:30</td>
+							<td>D35L1</td>
+							<td>16:30</td>
+						</tr>
+						<tr class="row2">
+							<td>Mastomoto-Japan to<br/> Port Elizabeth-South Africa</td>
+							<td>FL7242</td>
+							<td>12:30</td>
+							<td>D35L1</td>
+							<td>15:30</td>
+						</tr>
+						
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="more-info">
+				<div class="contain">
+					<div class="col-md-4">
+						<h4>Travel Agencies</h4>
+						<ul>
+							<li><a href="http://www.harveyworld.co.za/travel-agents">Harvey World</a><li>
+							<li><a href="http://www.pentravel.co.za/">Pentravel</a><li>
+							<li><a href="http://www.suretravel.co.za/">Sure Travel</a><li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4>Company</h4>
+						<ul>
+							<li><a href="About_Us.html#About">About Us</a></li>
+							<li><a href="Support.html">Support</a></li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4>Customer Support</h4>
+						<ul>
+							<li><a href="Support.html#Delayed">Delayed Flight</a></li>
+					<li><a href="Support.html#Luggage">Lost Baggage</a></li>
+					<li><a href="Support.html#SubQ">Submit Question</a></li>
+					<li><a href="Support.html#Contact-Us">Contact Us</a></li>
+						</ul>
+					</div>
+				</div>
+		</div>
+		<footer class="footer">
+			<p>This site was made by Donovan van Heerden Copyright &copy </p>
+		</footer>
+	</body>
+</html>

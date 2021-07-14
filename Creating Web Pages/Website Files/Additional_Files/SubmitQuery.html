@@ -1,0 +1,46 @@
+<div id="SubmitQ" class="Q">
+<h2>Have a Question?</h2>
+<p>Submit a question to us, regarding the topic with which you want to enquire about.</p>
+<div style="margin:auto;width:400px;">
+<form autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="width:auto;">
+	<fieldset  name="SubmissionQuery" style="text-align:center;">
+		<legend>Query Submission</legend>
+		<table style="margin:auto;">
+			<tr>
+				<td class="t"><input type="text" id="fName" placeholder="First Name" required/></td>
+				<td class="t"><input type="text" id="sName" placeholder="Surname" required/></td>
+			</tr>
+			<tr>
+				<td class="t"><input type="email" id="eMail" placeholder="Email"required/></td>
+				<td class="t"><input pattern="[0-9]{10}" type="text" id="tNum" placeholder="Telephone Number"required/></td>
+			</tr>
+			<tr>
+				<td class="t">Query Subject:</td>
+				<td class="t"><select style="width:155px" name="options">
+					<option value="Airport Query">Airport Query/Report</option>
+					<option value="Luggage Query">Luggage Query/Report</option>
+					<option value="Booking Query">Booking Query/Report</option>
+					<option value="Flight Query">Flight Query/Report</option>
+					<option value="Other Query">Other Query/Report</option>
+					</select>
+				</td class="t">
+			</tr>
+			<tr>
+				<td colspan="2" style="padding-left:10px;"><textarea class="t" style="width:346px;height:150px;resize:none;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required></textarea></td>
+			</tr>
+		</table>
+	</fieldset>
+	<table style="margin:auto;">
+		<tr>
+			<td class="b">
+			<input type="submit" id="send" onclick="FormMess();" formtarget="_self"/>
+			</td>
+			<td class="b"><input type="reset"/></td>
+		</tr>
+	</table>
+</form>
+	<p style="border-bottom:none; color:#A5A5A5;">
+		If you wish to return to the previous page, then please click <a href="Support.html">here</a>
+	</p>
+</div>
+</div>

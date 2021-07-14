@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="SHORTCUT ICON" href="resources/icons/AMA-Zing Airways.png">
+		<link rel="stylesheet" href="resources/stylesheets/shift.css">
+		<link rel="Stylesheet" href="resources/stylesheets/PageLayout.css">
+		<link rel="Stylesheet" href="resources/stylesheets/main.css">
+		<title>AMA-Zing Airways</title>
+		<style>
+		
+		.MainContainer{
+			padding-top:10px;
+		}
+		
+		#Clock{
+			float:right;
+			display:box;
+			position:relative;
+			height:100px;
+			width:100px;
+			border-radius:50px;
+			border:1px solid #dbdbdb;
+			text-align:center;
+			padding-top:38px;
+			box-shadow: 0px 0px 30px 0px #dbdbdb;
+			color:#A5A5A5;
+		}
+		
+		#Vidplayer{
+			box-shadow: 5px 5px 30px 5px #dbdbdb;
+		}
+		
+		#Plane:hover{
+			-webkit-transform: rotate(360deg);
+		}
+		
+		#Plane{
+			width:106px;
+			height:51px;
+			position:relative;
+			-webkit-animation: planeFly;
+			-webkit-animation-duration:4s;
+			-webkit-animation-timing-function:ease;
+			visibility:visible !important;
+			-webkit-box-pack:center;
+			-webkit-box-align:center;
+			-webkit-transition: -webkit-transform 2s;
+		}
+		@-webkit-keyframes planeFly {
+		0%   { -webkit-transform: translateX(-700%);}
+		100% { -webkit-transform: translateX(0%%);}
+		}
+		</style>
+		<script>
+			function startTime() {
+				var today=new Date();
+				var h=today.getHours();
+				var m=today.getMinutes();
+				var s=today.getSeconds();
+				m = checkTime(m);
+				s = checkTime(s);
+				document.getElementById('Clock').innerHTML = h+":"+m+":"+s;
+				var t = setTimeout(function(){startTime()},500);
+			}
+
+			function checkTime(i) {
+				if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+				return i;
+}
+		</script>
+	</head>
+	<body onload="startTime()">
+		<div class="nav">
+		  <div class="container">
+			<ul class="pull-left">
+			  <li><a href="Home.html">AMA-Zing Airways</a></li>
+			</ul>
+			<div class="menu-items">
+			<ul>
+			  <li class="col-md-1"><a href="Support.html">Help</a></li>
+			  <li class="col-md-1"><a href="Bookings.html">Bookings</a></li>
+			  <li class="col-md-1"><a href="About_Us.html">About</a></li>
+			  <li class="col-md-1"><a href="Home.html">Home</a></li>
+			</ul>
+			</div>
+		  </div>
+		</div>
+		<div id="contents">
+			<div style="padding-top:10px;padding-right:10px;">
+				<div id="Clock">
+				</div>
+			</div>
+			<div id="Plane" style="margin:auto;">
+				<img  src="Resources/Pictures/AeroplaneFigure.png"/>
+			</div>
+			<div class="MainContainer">
+				<h2>This is a typical day at AMA-Zing Airways Airport</h2>
+				<section id="Vidplayer"  style="padding:15px;">
+					<video width="960" height="540" controls>
+						<source src="Resources/Videos/TypicalAirportDay.mp4" type="audio/mpeg" />
+					</video>
+				</section>
+				<div class="VidDesc" >
+					<dl>
+						<dt>Video Description</dt>
+							<dd>
+								<p>
+									<strong>00:00 - 00:07</strong> <i>We see an aeroplane being moved into position to prepare for take off!</i><br/><br/>
+									<strong>00:08 - 00:15</strong> <i>We see an aeroplane come in to an "off-loading-bay", the passengers arriving may get off.</i><br/><br/>
+									<strong>00:16 - 00:31</strong> <i>We see the general background work of the airport staff checking the aeroplane and offloading/transporting luggage.</i><br/><br/>
+									<strong>00:32 - 00:47</strong> <i>We see an aeroplane accepting passengers board on, followed by a second plane going to offload passengers. Finally the first plane gets into position for take off.</i><br/><br/>
+									<strong>00:48 - 01:03</strong> <i>We see the general work of the airport staff at night, followed by aeroplanes arriving as well as preparing to leave.</i><br/><br/>
+									<strong>01:04 - 01:34</strong> <i>We see the airport staff working in the early morning moving the plane in preparation for it to take off, until it finally does take off.</i><br/><br/>
+									<strong>01:35 - 01:42</strong> <i>We see the iconic Pok&#233;mon branded plane prepare for take off.</i><br/><br/>
+									<strong>01:43 - 01:58</strong> <i>Again we see general work of the airport staff at night, followed by an aeroplane preparing to accept passengers.</i><br/><br/>
+									<strong>01:59 - 02:06</strong> <i>We see the airport staff moving the various vehicles around.</i><br/><br/>
+									<strong>02:07 - 02:14</strong> <i>We see a different view of the airport staff working at night.</i><br/><br/>
+									<strong>02:15 - 02:22</strong> <i>We see the airport staff doing a wheel check on the aeroplane, preparing it for take off.</i><br/><br/>
+									<strong>02:23 - 03:10</strong> <i>We see a view of the airport airstrip and the vast aeroplane traffic, following by a maintenance team doing their checks on an aeroplane.</i><br/><br/>
+									<strong>03:11 - 03:17</strong> <i>Again we see general work of the airport staff at night.</i><br/><br/>
+									<strong>03:18 - 03:28</strong> <i>We see the airport from the outside, near the highway entrance. Where you can see the various traffic entering and exiting the airport.</i><br/><br/>
+								</p>
+							</dd>
+					</dl>
+				</div>
+			</div>
+			
+		</div>
+		<div class="more-info">
+			<div class="contain">
+				<div class="col-md-4">
+						<h4>Travel Agencies</h4>
+						<ul>
+							<li><a href="http://www.harveyworld.co.za/travel-agents">Harvey World</a><li>
+							<li><a href="http://www.pentravel.co.za/">Pentravel</a><li>
+							<li><a href="http://www.suretravel.co.za/">Sure Travel</a><li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4>Company</h4>
+						<ul>
+							<li><a href="About_Us.html#About">About Us</a></li>
+							<li><a href="Support.html">Support</a></li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h4>Customer Support</h4>
+						<ul>
+							<li><a href="Support.html#Delayed">Delayed Flight</a></li>
+					<li><a href="Support.html#Luggage">Lost Baggage</a></li>
+					<li><a href="Support.html#SubQ">Submit Question</a></li>
+					<li><a href="Support.html#Contact-Us">Contact Us</a></li>
+						</ul>
+				</div>
+			</div>		
+		</div>
+		<footer class="footer">
+			<p>This site was made by Donovan van Heerden Copyright &copy </p>
+		</footer>
+	</body>
+</html>
